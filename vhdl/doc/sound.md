@@ -1,9 +1,10 @@
-===============================================================================
-the SOUND chip
-===============================================================================
 
+### Paula SOUND chipset
+
+~~~~
 JIM Dev no: &D0 (Paula) &D1 (Blitter/cpu)
 JIM Base address: $FE FC80
+~~~~
 
 The Dossytronics CPU/Blitter and 1M Paula cards both use new jim space API for
 access to both the on board ram  and the device registers. This saves on using
@@ -26,9 +27,11 @@ The registers for the sound chipset are accessed also through JIM by accessing
 the address space range at $FE FC80-FC8F in jim memory i.e. to write the 
 channel select register in BASIC the following sequence should be used.
 
+~~~~
 10DEVNO=&D1:?&EE=DEVNO:?&FCFF=DEVNO:REM - access device and set shadow register
 20?&FCFE=80:?&FCFD=&FE: REM - set jim page to $FE FCxx
 30?&FD8F=0: REM - select channel 0
+~~~~
 
 The sound processor appears as a 4 channel PCM + mixer device, loosely modelled
 on the Amiga's Paula chip.
@@ -38,6 +41,7 @@ Each channel can be set to output a static value by setting its data register
 loop) or can be programmed to play a sound sample from memory using DMA 
 techniques
 
+~~~~
   Address       Purpose
   -------       -------
   BASE + 0      Sound data read/write current sample
@@ -70,6 +74,7 @@ techniques
   ACT, setting this bit will initiate playing a sample using DMA
   RPT, setting this bit will cause the sample to repeat, the sample will
        be repeated beginning at the offset in BASE+10/11
+~~~~
 
 The clock for playing samples is a nominal 3,546,895Hz (as on a PAL Amiga). 
 The "period" describes the number of PAL clocks that should pass between each
@@ -78,6 +83,7 @@ sample being loaded (via DMA)
 For example, this program sets up a sample of 32 bytes length in chip RAM
 and sets channel 0 to repeatedly play the sound
 
+~~~~
    10 REM BLIT SOUND
    20 DEVNO%=&D0 : REM JIM device number for 1MHz Paula
    30 snd%=&FD80:sndjim%=&FEFC
@@ -95,7 +101,9 @@ and sets channel 0 to repeatedly play the sound
   130 snd%?&9=255:REM channel vol max
   140 snd%?&A=0:snd%?&B=0:REM repeat from start of sample
   150 snd%?&8=&81:REM play, repeat
+~~~~
 
+~~~~
 Line 20..30 : set hardware parameters, for blitter change devno to &D1
 Line 40:      calulate SP, number of 3.5ish MHz ticks to make a 32 sample 
               play at 1kHz
@@ -108,10 +116,14 @@ Line 80:      generate the sinewave into chip RAM
 Line 86:      point the JIM page at $FE FCxx in the device's space where the
               hardware registers reside
 Lines 90-150: Set up the hardware registers to play the sample
+~~~~
 
 To stop a sound playing it is a simple of matter of selecting the channel and
 setting the control register to 0
 
+~~~~
   200 REM stop sound
   210 snd%?&F=0:REM select channel 0
   100 snd%?&8=0:REM stop
+~~~~
+
