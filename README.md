@@ -4,9 +4,11 @@ A VHDL implementation of an Amiga-like sound card for the BBC Micro series using
 
 Documentation for programming the hardware can be found at:
 * [general overview](vhdl/hoglet-1m-paula/readme.md) 
-* [sound specific](vhdl/chipset_fb/sound.md)
+* [sound specific](vhdl/doc/sound.md)
 
-The binaries folder contains pre-built .bit and .mcs files for programming the board and a .ssd containing a pre-built modplayer demo
+The binaries folder contains pre-built .bit and .mcs files for programming the board and a .ssd containing a pre-built modplayer demo. The sources for the modplayer are included in this repository.
+
+NOTE: running with an original firmware DataCentre connected will likely result in corruption of the DC's memory. Updates for the DC can be found [here](https://github.com/dominicbeesley/DataCentre)
 
 Known omissions and problems:
 - master volume doesn't work

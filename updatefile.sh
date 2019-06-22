@@ -7,7 +7,7 @@ BASE_6502=/cygdrive/d/users/dominic/Documents/programming/6502/mysources/6502-ge
 
 read -r -d '' sourcelines <<-ENDXX
 $BASE_VHDL/chipset_fb:vhdl/chipset_fb:dmac_int_sound.*\\.vhd:-S
-$BASE_VHDL/chipset_fb:vhdl/chipset_fb:sound.md:-S
+$BASE_VHDL/doc:vhdl/doc:sound.md:-S
 $BASE_VHDL/fishbone/:vhdl/fishbone:.*:-R -S
 $BASE_VHDL/hoglet-1m-paula/:vhdl/hoglet-1m-paula:.*:-R -S
 $BASE_VHDL/vhdl_lib:vhdl/vhdl_lib:.*\.vhd:-S
