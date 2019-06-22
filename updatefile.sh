@@ -15,9 +15,9 @@ $BASE_VHDL/vhdl_lib/bbc:vhdl/vhdl_lib/bbc:.*\.vhd:-S
 $BASE_VHDL/vhdl_lib/T6502:vhdl/vhdl_lib/T6502:.*\.vhd:-S
 $BASE_6502/includes:6502/includes:.*:-S
 $BASE_6502/Blitter/demos/modplay:/6502/Blitter/demos/modplay:.*:-S -R
-$BASE_6502/Blitter/demos/modplay:/6502/Blitter/demos:MakefilePaula:-S
+$BASE_6502/Blitter/demos:/6502/Blitter/demos:MakefilePaula:-S
 $BASE_VHDL/hoglet-1m-paula/working/:binaries:.*\.(bit|mcs):
-$BASE_6502/Blitter/demos/modplay:/6502/Blitter/demos:paula.ssd:
+$BASE_6502/Blitter/demos:binaries:paula.ssd:
 ENDXX
 
 
